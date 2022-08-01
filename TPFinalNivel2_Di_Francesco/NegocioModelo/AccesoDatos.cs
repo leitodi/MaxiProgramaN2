@@ -20,7 +20,7 @@ namespace NegocioModelo
         }
         public SqlDataReader Lector
         {
-            get { return lector; }
+            get { return lector;  }
         }       
         public void consulta (string query)
         {
