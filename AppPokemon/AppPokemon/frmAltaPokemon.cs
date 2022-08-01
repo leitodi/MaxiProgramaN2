@@ -42,6 +42,7 @@ namespace AppPokemon
                 poke.UrlImagen = txtUrl.Text;
                 poke.Tipo = (Elemento)cboTipo.SelectedItem;
                 poke.Debilidad = (Elemento)cboDebilidad.SelectedItem;
+                
                 negocio.agregar(poke);
 
                 MessageBox.Show("agregado exitosamente");
