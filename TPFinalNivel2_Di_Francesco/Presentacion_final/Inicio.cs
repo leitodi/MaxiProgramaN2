@@ -111,20 +111,7 @@ namespace Presentacion_final
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
-            List<Articulos> filtroList;
-            string filtro = txtFiltro.Text;
-            if(filtro != "")
-            {
-                filtroList=listaArt.FindAll(a => a.Nombre.ToUpper().Contains(filtro.ToUpper())|| a.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
-
-            }
-            else
-            {
-                filtroList = listaArt;
-            }
-            dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = filtroList;
-            ocultar();
+            
         }
 
         private void ocultar()
@@ -133,6 +120,23 @@ namespace Presentacion_final
             dgvArticulos.Columns["precio"].Visible = false;
             dgvArticulos.Columns["codigo"].Visible = false;
             dgvArticulos.Columns["id"].Visible = false;
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulos> filtroList;
+            string filtro = txtFiltro.Text;
+            if (filtro != "")
+            {
+                filtroList = listaArt.FindAll(a => a.Nombre.ToUpper().Contains(filtro.ToUpper()) || a.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                filtroList = listaArt;
+            }
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = filtroList;
+            ocultar();
         }
     }
 }

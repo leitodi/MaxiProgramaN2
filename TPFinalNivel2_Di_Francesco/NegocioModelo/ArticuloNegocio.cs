@@ -12,39 +12,31 @@ namespace NegocioModelo
     {
         
         public List<Articulos> listado()
-        {
-            
+        {            
             List<Articulos> lista = new List<Articulos>();
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            SqlDataReader lector;
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                conexion.ConnectionString = @"Data Source=DESKTOP-VUAF0M7\SQLEXPRESS;Initial Catalog=CATALOGO_DB;Integrated Security=True";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select a.id,codigo,nombre,a.Descripcion ,m.Descripcion Marca,c.Descripcion categoria, ImagenUrl,precio,m.id idmarca,c.id idcategoria " +
+                datos.consulta("select a.id,codigo,nombre,a.Descripcion ,m.Descripcion Marca,c.Descripcion categoria, ImagenUrl,precio,m.id idmarca,c.id idcategoria " +
                     "from ARTICULOS a, MARCAS m, CATEGORIAS c " +
-                    "where a.IdMarca=m.Id and a.IdMarca=c.Id";
-                comando.Connection = conexion;
+                    "where a.IdMarca=m.Id and a.IdMarca=c.Id");
+                datos.leer();
 
-                conexion.Open();
-                lector = comando.ExecuteReader();
-
-                while (lector.Read())
+                while (datos.Lector.Read())
                 {
                     Articulos articulo = new Articulos();
-                    articulo.Id = (int)lector["id"];
-                    articulo.Codigo = (string)lector["codigo"];
-                    articulo.Nombre = (string)lector["nombre"];
-                    articulo.Descripcion = (string)lector["descripcion"];
+                    articulo.Id = (int)datos.Lector["id"];
+                    articulo.Codigo = (string)datos.Lector["codigo"];
+                    articulo.Nombre = (string)datos.Lector["nombre"];
+                    articulo.Descripcion = (string)datos.Lector["descripcion"];
                     articulo.Marca = new Marca();
-                    articulo.Marca.Descripcion = (string)lector["marca"];
-                    articulo.Marca.Id = (int)lector["idmarca"];
+                    articulo.Marca.Descripcion = (string)datos.Lector["marca"];
+                    articulo.Marca.Id = (int)datos.Lector["idmarca"];
                     articulo.Categoria = new Categoria();
-                    articulo.Categoria.Descripcion = (string)lector["categoria"];
-                    articulo.Categoria.Id = (int)lector["idcategoria"];
-                    articulo.ImagenUrl = (string)lector["imagenurl"];
-                    articulo.Precio = Convert.ToDouble(lector["precio"]);
+                    articulo.Categoria.Descripcion = (string)datos.Lector["categoria"];
+                    articulo.Categoria.Id = (int)datos.Lector["idcategoria"];
+                    articulo.ImagenUrl = (string)datos.Lector["imagenurl"];
+                    articulo.Precio = Convert.ToDouble(datos.Lector["precio"]);
 
                     lista.Add(articulo);
 

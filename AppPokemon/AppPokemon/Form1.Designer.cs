@@ -40,6 +40,12 @@ namespace AppPokemon
             this.btnFiltro = new System.Windows.Forms.Button();
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.lblCampo = new System.Windows.Forms.Label();
+            this.cboCampo = new System.Windows.Forms.ComboBox();
+            this.cboCriterio = new System.Windows.Forms.ComboBox();
+            this.lblCriterio = new System.Windows.Forms.Label();
+            this.lblFiltro2 = new System.Windows.Forms.Label();
+            this.txtFiltro2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoke)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +76,7 @@ namespace AppPokemon
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(75, 402);
+            this.btnAgregar.Location = new System.Drawing.Point(30, 494);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 2;
@@ -80,7 +86,7 @@ namespace AppPokemon
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(212, 402);
+            this.btnModificar.Location = new System.Drawing.Point(167, 494);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 3;
@@ -90,7 +96,7 @@ namespace AppPokemon
             // 
             // btnEliminarF
             // 
-            this.btnEliminarF.Location = new System.Drawing.Point(334, 402);
+            this.btnEliminarF.Location = new System.Drawing.Point(289, 494);
             this.btnEliminarF.Name = "btnEliminarF";
             this.btnEliminarF.Size = new System.Drawing.Size(95, 23);
             this.btnEliminarF.TabIndex = 4;
@@ -100,7 +106,7 @@ namespace AppPokemon
             // 
             // btnEliminarLogico
             // 
-            this.btnEliminarLogico.Location = new System.Drawing.Point(446, 402);
+            this.btnEliminarLogico.Location = new System.Drawing.Point(401, 494);
             this.btnEliminarLogico.Name = "btnEliminarLogico";
             this.btnEliminarLogico.Size = new System.Drawing.Size(94, 23);
             this.btnEliminarLogico.TabIndex = 5;
@@ -110,7 +116,7 @@ namespace AppPokemon
             // 
             // btnFiltro
             // 
-            this.btnFiltro.Location = new System.Drawing.Point(299, 16);
+            this.btnFiltro.Location = new System.Drawing.Point(711, 416);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(95, 23);
             this.btnFiltro.TabIndex = 6;
@@ -134,13 +140,69 @@ namespace AppPokemon
             this.txtFiltro.Size = new System.Drawing.Size(161, 22);
             this.txtFiltro.TabIndex = 8;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
-            this.txtFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltro_KeyPress);
+            // 
+            // lblCampo
+            // 
+            this.lblCampo.AutoSize = true;
+            this.lblCampo.Location = new System.Drawing.Point(31, 415);
+            this.lblCampo.Name = "lblCampo";
+            this.lblCampo.Size = new System.Drawing.Size(51, 16);
+            this.lblCampo.TabIndex = 9;
+            this.lblCampo.Text = "Campo";
+            // 
+            // cboCampo
+            // 
+            this.cboCampo.FormattingEnabled = true;
+            this.cboCampo.Location = new System.Drawing.Point(103, 415);
+            this.cboCampo.Name = "cboCampo";
+            this.cboCampo.Size = new System.Drawing.Size(121, 24);
+            this.cboCampo.TabIndex = 10;
+            this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
+            // 
+            // cboCriterio
+            // 
+            this.cboCriterio.FormattingEnabled = true;
+            this.cboCriterio.Location = new System.Drawing.Point(339, 415);
+            this.cboCriterio.Name = "cboCriterio";
+            this.cboCriterio.Size = new System.Drawing.Size(121, 24);
+            this.cboCriterio.TabIndex = 12;
+            // 
+            // lblCriterio
+            // 
+            this.lblCriterio.AutoSize = true;
+            this.lblCriterio.Location = new System.Drawing.Point(267, 415);
+            this.lblCriterio.Name = "lblCriterio";
+            this.lblCriterio.Size = new System.Drawing.Size(49, 16);
+            this.lblCriterio.TabIndex = 11;
+            this.lblCriterio.Text = "Criterio";
+            // 
+            // lblFiltro2
+            // 
+            this.lblFiltro2.AutoSize = true;
+            this.lblFiltro2.Location = new System.Drawing.Point(508, 415);
+            this.lblFiltro2.Name = "lblFiltro2";
+            this.lblFiltro2.Size = new System.Drawing.Size(36, 16);
+            this.lblFiltro2.TabIndex = 13;
+            this.lblFiltro2.Text = "Filtro";
+            // 
+            // txtFiltro2
+            // 
+            this.txtFiltro2.Location = new System.Drawing.Point(573, 415);
+            this.txtFiltro2.Name = "txtFiltro2";
+            this.txtFiltro2.Size = new System.Drawing.Size(100, 22);
+            this.txtFiltro2.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 448);
+            this.ClientSize = new System.Drawing.Size(1085, 538);
+            this.Controls.Add(this.txtFiltro2);
+            this.Controls.Add(this.lblFiltro2);
+            this.Controls.Add(this.cboCriterio);
+            this.Controls.Add(this.lblCriterio);
+            this.Controls.Add(this.cboCampo);
+            this.Controls.Add(this.lblCampo);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
             this.Controls.Add(this.btnFiltro);
@@ -177,6 +239,12 @@ namespace AppPokemon
         private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.TextBox txtFiltro;
+        private Label lblCampo;
+        private ComboBox cboCampo;
+        private ComboBox cboCriterio;
+        private Label lblCriterio;
+        private Label lblFiltro2;
+        private TextBox txtFiltro2;
     }
 }
 

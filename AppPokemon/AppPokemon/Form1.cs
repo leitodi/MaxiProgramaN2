@@ -27,6 +27,9 @@ namespace AppPokemon
         private void Form1_Load(object sender, EventArgs e)
         {
             cargar();
+            cboCampo.Items.Add("Numero");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
         }
         private void dgvPoke_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -137,33 +140,26 @@ namespace AppPokemon
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
-            //List<Pokemon> listFiltro;
-            //string filtro = txtFiltro.Text; 
-            //if(filtro!="")
-            //{ 
-            //listFiltro= pokemonList.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Tipo.Descripcion.ToUpper().Contains(filtro.ToUpper()));//requiere exprecion lambda p=>
-            //    //contains metodo de cadenar que devuelve lo que contiene 
-            //}
-            //else
-            //{
-            //    listFiltro = pokemonList;
-            //}
+            PokemonNegocio poke = new PokemonNegocio();
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio=cboCriterio.SelectedItem.ToString();
+                string filtro =txtFiltro2.Text;
+                dgvPoke.DataSource = poke.filtrar(campo, criterio, filtro);
 
-            //dgvPoke.DataSource = null;
-            //dgvPoke.DataSource = listFiltro;//se debe limpiar la lista por q no se pisa 
-            //ocultar();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
-
-        private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Pokemon> listFiltro;
             string filtro = txtFiltro.Text;
-            if (filtro != "")
+            if (filtro.Length>4)
             {
                 listFiltro = pokemonList.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Tipo.Descripcion.ToUpper().Contains(filtro.ToUpper()));//requiere exprecion lambda p=>
                 //contains metodo de cadenar que devuelve lo que contiene 
@@ -172,10 +168,28 @@ namespace AppPokemon
             {
                 listFiltro = pokemonList;
             }
-
             dgvPoke.DataSource = null;
             dgvPoke.DataSource = listFiltro;//se debe limpiar la lista por q no se pisa 
             ocultar();
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if(opcion == "Numero")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
         }
     }
 }
