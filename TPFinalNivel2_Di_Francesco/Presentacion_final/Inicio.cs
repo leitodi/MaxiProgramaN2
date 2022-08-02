@@ -35,10 +35,7 @@ namespace Presentacion_final
             {
                 listaArt = negocioArticulo.listado();
                 dgvArticulos.DataSource = listaArt;
-                dgvArticulos.Columns["imagenurl"].Visible = false;
-                dgvArticulos.Columns["precio"].Visible = false;
-                dgvArticulos.Columns["codigo"].Visible = false;
-                dgvArticulos.Columns["id"].Visible = false;
+                ocultar();
                 imagen(listaArt[0].ImagenUrl);
             }
             catch (Exception ex)
@@ -63,9 +60,12 @@ namespace Presentacion_final
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
+            if (dgvArticulos.CurrentRow != null)
+            {            
             Articulos oArticulo = (Articulos)dgvArticulos.CurrentRow.DataBoundItem;
 
             imagen(oArticulo.ImagenUrl);
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -81,6 +81,58 @@ namespace Presentacion_final
             frmArticulo alta = new frmArticulo(seleccion);
             alta.ShowDialog();
             cargar();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio a = new ArticuloNegocio();
+             
+            try
+            {
+                Articulos ar = (Articulos)dgvArticulos.CurrentRow.DataBoundItem;
+                if (MessageBox.Show("Seguro desea eliminar?", "Eliminando", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK) { 
+                    a.eliminar(ar.Id);
+                    cargar();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro que desa salir?", "Saliendo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            List<Articulos> filtroList;
+            string filtro = txtFiltro.Text;
+            if(filtro != "")
+            {
+                filtroList=listaArt.FindAll(a => a.Nombre.ToUpper().Contains(filtro.ToUpper())|| a.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+
+            }
+            else
+            {
+                filtroList = listaArt;
+            }
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = filtroList;
+            ocultar();
+        }
+
+        private void ocultar()
+        {
+            dgvArticulos.Columns["imagenurl"].Visible = false;
+            dgvArticulos.Columns["precio"].Visible = false;
+            dgvArticulos.Columns["codigo"].Visible = false;
+            dgvArticulos.Columns["id"].Visible = false;
         }
     }
 }

@@ -217,7 +217,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblCodigo);
             this.Name = "frmArticulo";
-            this.Text = "Articulo";
+            this.Text = "Nuevo Articulo";
             this.Load += new System.EventHandler(this.Articulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);

@@ -23,7 +23,7 @@ namespace Presentacion_final
         {
             InitializeComponent();
             this.articulo = modificar;
-            Text = "Modificar articulo";
+            Text = "Modificar Articulo";
         }
 
         private void Articulo_Load(object sender, EventArgs e)

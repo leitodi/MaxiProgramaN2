@@ -13,13 +13,13 @@ namespace NegocioModelo
         
         public List<Articulos> listado()
         {
+            
             List<Articulos> lista = new List<Articulos>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
             try
             {
-
                 conexion.ConnectionString = @"Data Source=DESKTOP-VUAF0M7\SQLEXPRESS;Initial Catalog=CATALOGO_DB;Integrated Security=True";
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "select a.id,codigo,nombre,a.Descripcion ,m.Descripcion Marca,c.Descripcion categoria, ImagenUrl,precio,m.id idmarca,c.id idcategoria " +
@@ -114,6 +114,22 @@ namespace NegocioModelo
             finally
             {
                 datos.cerrar();
+            }
+        }
+        public void eliminar(int id)
+        {            
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.consulta("delete from ARTICULOS where id=@id");
+                datos.parametros("@id",id);
+                datos.accion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

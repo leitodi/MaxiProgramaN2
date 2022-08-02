@@ -14,6 +14,7 @@ namespace AppPokemon
 {
     public partial class frmAltaPokemon : Form
     {
+        private Pokemon  pokemon =null;
         public frmAltaPokemon()
         {
             InitializeComponent();
@@ -22,6 +23,8 @@ namespace AppPokemon
         public frmAltaPokemon(Pokemon poke)
         {
             InitializeComponent();
+            this.pokemon= poke;
+            Text = "Modificar pokemon";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -31,21 +34,32 @@ namespace AppPokemon
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Pokemon poke = new Pokemon();
+            
             PokemonNegocio negocio = new PokemonNegocio();
 
             try
             {
-                poke.Numero = int.Parse(txtNumero.Text);
-                poke.Nombre = txtNombre.Text;
-                poke.Descripcion=txtDescripcion.Text;
-                poke.UrlImagen = txtUrl.Text;
-                poke.Tipo = (Elemento)cboTipo.SelectedItem;
-                poke.Debilidad = (Elemento)cboDebilidad.SelectedItem;
-                
-                negocio.agregar(poke);
+                if(pokemon==null)
+                    pokemon =new Pokemon();
+                pokemon.Numero = int.Parse(txtNumero.Text);
+                pokemon.Nombre = txtNombre.Text;
+                pokemon.Descripcion=txtDescripcion.Text;
+                pokemon.UrlImagen = txtUrl.Text;
+                pokemon.Tipo = (Elemento)cboTipo.SelectedItem;
+                pokemon.Debilidad = (Elemento)cboDebilidad.SelectedItem;
 
-                MessageBox.Show("agregado exitosamente");
+                if (pokemon.Id != 0)
+                {
+                    negocio.modificar(pokemon);
+                    MessageBox.Show("Modificado exitosamente");
+                }
+                else
+                {
+                    negocio.agregar(pokemon);
+                    MessageBox.Show("agregado exitosamente");
+                }
+                
+                
                 Close();
 
             }
@@ -63,7 +77,22 @@ namespace AppPokemon
             try
             {
                 cboTipo.DataSource = negocio.listar();
-                cboDebilidad.DataSource= negocio.listar();  
+                cboTipo.ValueMember = "id";
+                cboTipo.DisplayMember = "descripcion";
+                cboDebilidad.DataSource= negocio.listar();
+                cboDebilidad.ValueMember = "id";
+                cboDebilidad.DisplayMember = "descripcion";
+
+                if (pokemon != null)
+                {
+                    txtNumero.Text = pokemon.Numero.ToString();
+                    txtNombre.Text = pokemon.Nombre;
+                    txtDescripcion.Text = pokemon.Descripcion;
+                    txtUrl.Text = pokemon.UrlImagen;
+                    cargarImagen(pokemon.UrlImagen);
+                    cboTipo.SelectedValue = pokemon.Tipo.Id;
+                    cboDebilidad.SelectedValue = pokemon.Debilidad.Id;
+                }
             }
             catch (Exception ex)
             {
