@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NegocioModelo;
 using Dominio;
+using System.IO;
+using System.Configuration;
 
 namespace Presentacion_final
 {
@@ -125,6 +127,21 @@ namespace Presentacion_final
             {
 
                 pbImagen.Load("https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg");
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtURL.Text= archivo.FileName;
+                imagen(archivo.FileName);
+
+                //guardar imagen 
+                //para usar ocnfiguraton tenemos q agregar en referencia y using 
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"]+archivo.SafeFileName);
             }
         }
     }

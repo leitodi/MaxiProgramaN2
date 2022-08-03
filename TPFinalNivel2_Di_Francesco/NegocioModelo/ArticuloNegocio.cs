@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dominio;
 
+
 namespace NegocioModelo
 {
     public class ArticuloNegocio
@@ -108,6 +109,94 @@ namespace NegocioModelo
                 datos.cerrar();
             }
         }
+
+        public List<Articulos> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulos> lista = new List<Articulos>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "select a.id,codigo,nombre,a.Descripcion ,m.Descripcion Marca,c.Descripcion categoria, ImagenUrl,precio,m.id idmarca,c.id idcategoria " +
+                    "from ARTICULOS a, MARCAS m, CATEGORIAS c " +
+                    "where a.IdMarca=m.Id and a.IdMarca=c.Id and ";
+                datos.consulta(consulta);
+                if (campo == "Codigo")
+                {
+                    switch (criterio)
+                    {
+                        case "Mayor a":
+                            consulta += "Numero > " + filtro;
+                            break;
+                        case "Menor a":
+                            consulta += "Numero < " + filtro;
+                            break;
+                        case "Igual a":
+                            consulta += "Numero = " + filtro;
+                            break;
+                    }
+                }
+                else if (campo=="Nombre"||campo=="Descripcion")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "nombre like '" + filtro + "%'";
+                            break;
+                        case "Contiene":
+                            consulta += "nombre like '%" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "nombre like '%" + filtro + "' ";
+                            break;
+                    }
+
+                }
+                else if (campo == "Descripcion")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Contiene":
+                            consulta += "Descripcion like '%" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "Descripcion like '%" + filtro + "' ";
+                            break;
+                    }
+                }
+
+                datos.consulta(consulta);
+                datos.leer();
+                while (datos.Lector.Read())
+                {
+                    Articulos articulo = new Articulos();
+                    articulo.Id = (int)datos.Lector["id"];
+                    articulo.Codigo = (string)datos.Lector["codigo"];
+                    articulo.Nombre = (string)datos.Lector["nombre"];
+                    articulo.Descripcion = (string)datos.Lector["descripcion"];
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Descripcion = (string)datos.Lector["marca"];
+                    articulo.Marca.Id = (int)datos.Lector["idmarca"];
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Descripcion = (string)datos.Lector["categoria"];
+                    articulo.Categoria.Id = (int)datos.Lector["idcategoria"];
+                    articulo.ImagenUrl = (string)datos.Lector["imagenurl"];
+                    articulo.Precio = Convert.ToDouble(datos.Lector["precio"]);
+
+                    lista.Add(articulo);
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         public void eliminar(int id)
         {            
             try

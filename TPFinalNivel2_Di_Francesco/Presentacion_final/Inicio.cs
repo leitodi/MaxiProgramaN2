@@ -25,7 +25,9 @@ namespace Presentacion_final
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
-
+            cboCampo.Items.Add("Codigo");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
         }
 
         private void cargar()
@@ -111,7 +113,19 @@ namespace Presentacion_final
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
-            
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltro2.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void ocultar()
@@ -137,6 +151,26 @@ namespace Presentacion_final
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = filtroList;
             ocultar();
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if (opcion == "Codigo")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menora a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Contiene");
+                cboCriterio.Items.Add("Termina con");
+            }
+
         }
     }
 }

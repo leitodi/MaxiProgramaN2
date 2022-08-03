@@ -38,6 +38,12 @@
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.btnFiltro = new System.Windows.Forms.Button();
+            this.lblCampo = new System.Windows.Forms.Label();
+            this.lblFiltro2 = new System.Windows.Forms.Label();
+            this.lblCriterio = new System.Windows.Forms.Label();
+            this.cboCampo = new System.Windows.Forms.ComboBox();
+            this.cboCriterio = new System.Windows.Forms.ComboBox();
+            this.txtFiltro2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pkImagen)).BeginInit();
             this.SuspendLayout();
@@ -117,7 +123,7 @@
             // 
             this.lblFiltro.AutoSize = true;
             this.lblFiltro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltro.Location = new System.Drawing.Point(92, 53);
+            this.lblFiltro.Location = new System.Drawing.Point(44, 25);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(59, 24);
             this.lblFiltro.TabIndex = 7;
@@ -125,7 +131,7 @@
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(182, 54);
+            this.txtFiltro.Location = new System.Drawing.Point(119, 28);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(143, 22);
             this.txtFiltro.TabIndex = 8;
@@ -133,19 +139,76 @@
             // 
             // btnFiltro
             // 
-            this.btnFiltro.Location = new System.Drawing.Point(363, 54);
+            this.btnFiltro.Location = new System.Drawing.Point(620, 75);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(75, 23);
             this.btnFiltro.TabIndex = 9;
-            this.btnFiltro.Text = "Filtro";
+            this.btnFiltro.Text = "Filtrar";
             this.btnFiltro.UseVisualStyleBackColor = true;
             this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
+            // 
+            // lblCampo
+            // 
+            this.lblCampo.AutoSize = true;
+            this.lblCampo.Location = new System.Drawing.Point(66, 79);
+            this.lblCampo.Name = "lblCampo";
+            this.lblCampo.Size = new System.Drawing.Size(51, 16);
+            this.lblCampo.TabIndex = 10;
+            this.lblCampo.Text = "Campo";
+            // 
+            // lblFiltro2
+            // 
+            this.lblFiltro2.AutoSize = true;
+            this.lblFiltro2.Location = new System.Drawing.Point(451, 79);
+            this.lblFiltro2.Name = "lblFiltro2";
+            this.lblFiltro2.Size = new System.Drawing.Size(36, 16);
+            this.lblFiltro2.TabIndex = 11;
+            this.lblFiltro2.Text = "Filtro";
+            // 
+            // lblCriterio
+            // 
+            this.lblCriterio.AutoSize = true;
+            this.lblCriterio.Location = new System.Drawing.Point(260, 79);
+            this.lblCriterio.Name = "lblCriterio";
+            this.lblCriterio.Size = new System.Drawing.Size(49, 16);
+            this.lblCriterio.TabIndex = 12;
+            this.lblCriterio.Text = "Criterio";
+            // 
+            // cboCampo
+            // 
+            this.cboCampo.FormattingEnabled = true;
+            this.cboCampo.Location = new System.Drawing.Point(123, 71);
+            this.cboCampo.Name = "cboCampo";
+            this.cboCampo.Size = new System.Drawing.Size(121, 24);
+            this.cboCampo.TabIndex = 13;
+            this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
+            // 
+            // cboCriterio
+            // 
+            this.cboCriterio.FormattingEnabled = true;
+            this.cboCriterio.Location = new System.Drawing.Point(315, 71);
+            this.cboCriterio.Name = "cboCriterio";
+            this.cboCriterio.Size = new System.Drawing.Size(121, 24);
+            this.cboCriterio.TabIndex = 14;
+            // 
+            // txtFiltro2
+            // 
+            this.txtFiltro2.Location = new System.Drawing.Point(495, 76);
+            this.txtFiltro2.Name = "txtFiltro2";
+            this.txtFiltro2.Size = new System.Drawing.Size(100, 22);
+            this.txtFiltro2.TabIndex = 15;
             // 
             // frmCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1071, 477);
+            this.Controls.Add(this.txtFiltro2);
+            this.Controls.Add(this.cboCriterio);
+            this.Controls.Add(this.cboCampo);
+            this.Controls.Add(this.lblCriterio);
+            this.Controls.Add(this.lblFiltro2);
+            this.Controls.Add(this.lblCampo);
             this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
@@ -179,6 +242,12 @@
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Button btnFiltro;
+        private System.Windows.Forms.Label lblCampo;
+        private System.Windows.Forms.Label lblFiltro2;
+        private System.Windows.Forms.Label lblCriterio;
+        private System.Windows.Forms.ComboBox cboCampo;
+        private System.Windows.Forms.ComboBox cboCriterio;
+        private System.Windows.Forms.TextBox txtFiltro2;
     }
 }
 

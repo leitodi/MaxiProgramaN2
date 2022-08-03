@@ -43,6 +43,7 @@
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.lblUrl = new System.Windows.Forms.Label();
             this.pbImagen = new System.Windows.Forms.PictureBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,11 +178,22 @@
             this.pbImagen.TabIndex = 14;
             this.pbImagen.TabStop = false;
             // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Location = new System.Drawing.Point(331, 160);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(19, 23);
+            this.btnAgregarImagen.TabIndex = 15;
+            this.btnAgregarImagen.Text = "Agregar imagen";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            // 
             // frmAltaPokemon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 332);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.pbImagen);
             this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.lblUrl);
@@ -224,5 +236,6 @@
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.PictureBox pbImagen;
+        private System.Windows.Forms.Button btnAgregarImagen;
     }
 }

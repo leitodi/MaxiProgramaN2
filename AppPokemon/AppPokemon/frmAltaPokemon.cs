@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using dominioNegocio;
+using System.Configuration;
+using System.IO;
 
 namespace AppPokemon
 {
@@ -122,6 +124,22 @@ namespace AppPokemon
         private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg";
+
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtUrl.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+
+                //guardar imagen 
+                //para usar ocnfiguraton tenemos q agregar en referencia y using 
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+            }
         }
     }
 }
