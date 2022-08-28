@@ -82,7 +82,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(346, 421);
+            this.btnEditar.Location = new System.Drawing.Point(217, 421);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(92, 23);
             this.btnEditar.TabIndex = 3;
@@ -92,7 +92,7 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(201, 421);
+            this.btnBorrar.Location = new System.Drawing.Point(395, 421);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(92, 23);
             this.btnBorrar.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(495, 421);
+            this.btnGuardar.Location = new System.Drawing.Point(584, 421);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(92, 23);
             this.btnGuardar.TabIndex = 5;
@@ -176,6 +176,7 @@
             // 
             // cboCampo
             // 
+            this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.FormattingEnabled = true;
             this.cboCampo.Location = new System.Drawing.Point(123, 71);
             this.cboCampo.Name = "cboCampo";
@@ -185,6 +186,7 @@
             // 
             // cboCriterio
             // 
+            this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.FormattingEnabled = true;
             this.cboCriterio.Location = new System.Drawing.Point(315, 71);
             this.cboCriterio.Name = "cboCriterio";

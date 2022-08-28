@@ -20,7 +20,7 @@ namespace NegocioModelo
             {
                 datos.consulta("select a.id,codigo,nombre,a.Descripcion ,m.Descripcion Marca,c.Descripcion categoria, ImagenUrl,precio,m.id idmarca,c.id idcategoria " +
                     "from ARTICULOS a, MARCAS m, CATEGORIAS c " +
-                    "where a.IdMarca=m.Id and a.IdMarca=c.Id");
+                    "where a.IdMarca=m.Id and a.IdMarca=c.Id order by nombre");
                 datos.leer();
 
                 while (datos.Lector.Read())

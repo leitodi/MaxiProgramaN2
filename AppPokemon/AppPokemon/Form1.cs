@@ -103,7 +103,6 @@ namespace AppPokemon
             frmAltaPokemon modificar = new frmAltaPokemon(seleccionado);
             modificar.ShowDialog();
             cargar();
-
         }
 
         private void btnEliminarLogico_Click(object sender, EventArgs e)
@@ -143,11 +142,12 @@ namespace AppPokemon
             PokemonNegocio poke = new PokemonNegocio();
             try
             {
+                if (validar()) { 
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio=cboCriterio.SelectedItem.ToString();
                 string filtro =txtFiltro2.Text;
                 dgvPoke.DataSource = poke.filtrar(campo, criterio, filtro);
-
+                }
             }
             catch (Exception ex)
             {
@@ -155,6 +155,47 @@ namespace AppPokemon
                 throw ex;
             }
         }
+
+        private bool validar()
+        {
+            bool retorno = true;
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor eljia un campo");
+                retorno = false;
+                cboCampo.Focus();
+            }
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor eljia un criterio");
+                retorno = false;
+                cboCriterio.Focus();
+            }
+            if (cboCampo.SelectedItem.ToString() == "Numero")
+            {
+                if (!numeros(txtFiltro2.Text))
+                {
+                    MessageBox.Show("Por favor solo numeros");
+                    retorno = false;
+                    txtFiltro2.Focus();
+                }
+            }
+            return retorno;
+        }
+
+        private bool numeros(string text)
+        {
+            bool retorno= true;
+            foreach (char caracter in text)
+            {
+                if (!char.IsNumber(caracter))
+                {
+                    retorno = false;
+                }
+            }
+            return retorno;
+        }
+
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Pokemon> listFiltro;
@@ -190,6 +231,11 @@ namespace AppPokemon
                 cboCriterio.Items.Add("Termina con");
                 cboCriterio.Items.Add("Contiene");
             }
+        }
+
+        private void txtFiltro2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -152,6 +152,7 @@ namespace AppPokemon
             // 
             // cboCampo
             // 
+            this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.FormattingEnabled = true;
             this.cboCampo.Location = new System.Drawing.Point(103, 415);
             this.cboCampo.Name = "cboCampo";
@@ -161,6 +162,7 @@ namespace AppPokemon
             // 
             // cboCriterio
             // 
+            this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.FormattingEnabled = true;
             this.cboCriterio.Location = new System.Drawing.Point(339, 415);
             this.cboCriterio.Name = "cboCriterio";
@@ -191,6 +193,7 @@ namespace AppPokemon
             this.txtFiltro2.Name = "txtFiltro2";
             this.txtFiltro2.Size = new System.Drawing.Size(100, 22);
             this.txtFiltro2.TabIndex = 14;
+            this.txtFiltro2.TextChanged += new System.EventHandler(this.txtFiltro2_TextChanged);
             // 
             // Form1
             // 

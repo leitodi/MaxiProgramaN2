@@ -17,6 +17,7 @@ namespace Presentacion_final
     public partial class frmArticulo : Form
     {
         private Articulos articulo = null;
+        private OpenFileDialog archivo = null;
         public frmArticulo()
         {
             InitializeComponent();
@@ -83,6 +84,10 @@ namespace Presentacion_final
                 articulo.ImagenUrl = txtURL.Text;
                 articulo.Precio = Convert.ToDouble(txtPrecio.Text);
 
+                //PARA LEVANTAR LOCALMENTE LA IMAGEN  
+                if (archivo != null && !(txtURL.Text.ToUpper().Contains("HTTP")))
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+
                 if (articulo.Id != 0) //el ID es autoincremental... por eso verifico en este momento si existe o no
                 {
                     n.modificar(articulo);
@@ -93,11 +98,8 @@ namespace Presentacion_final
                     n.agregar(articulo);
                     MessageBox.Show("Agregado exitosamente");
                 }
-                
-                
 
-                
-
+                              
                 Close();
 
             }
@@ -132,7 +134,7 @@ namespace Presentacion_final
 
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
-            OpenFileDialog archivo = new OpenFileDialog();
+            archivo = new OpenFileDialog();
             archivo.Filter = "jpg|*.jpg;|png|*.png";
             if (archivo.ShowDialog() == DialogResult.OK)
             {
@@ -141,7 +143,7 @@ namespace Presentacion_final
 
                 //guardar imagen 
                 //para usar ocnfiguraton tenemos q agregar en referencia y using 
-                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"]+archivo.SafeFileName);
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"]+archivo.SafeFileName);
             }
         }
     }

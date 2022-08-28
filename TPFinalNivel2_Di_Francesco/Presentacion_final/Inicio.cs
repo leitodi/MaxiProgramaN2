@@ -73,7 +73,8 @@ namespace Presentacion_final
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             frmArticulo nuevo = new frmArticulo();
-            nuevo.ShowDialog(); 
+            nuevo.ShowDialog();
+            cargar();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -107,7 +108,7 @@ namespace Presentacion_final
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Seguro que desa salir?", "Saliendo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Seguro que desea salir?", "Saliendo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 this.Close();
         }
 
@@ -116,10 +117,13 @@ namespace Presentacion_final
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                if (validar()) { 
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltro2.Text;
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -127,6 +131,25 @@ namespace Presentacion_final
                 throw ex;
             }
         }
+
+        private bool validar()
+        {
+            bool retorno = true;
+           if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione campo para filtrar");
+                retorno= false;
+                cboCampo.Focus();
+            }
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione criterio para filtrar");
+                retorno = false;
+                cboCriterio.Focus();
+            }          
+            
+            return retorno;
+        }      
 
         private void ocultar()
         {

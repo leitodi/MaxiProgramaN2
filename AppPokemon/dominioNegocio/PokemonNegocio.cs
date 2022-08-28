@@ -19,7 +19,7 @@ namespace dominioNegocio
             //SqlDataReader lector;
             try
             {               
-                datos.setearConsulta("select numero, nombre, p.Descripcion, UrlImagen, e.Descripcion tipo, d.Descripcion debilidad, p.id,p.idtipo,p.iddebilidad from POKEMONS p, ELEMENTOS e, ELEMENTOS d where p.IdTipo=e.Id and d.Id=p.IdDebilidad And P.Activo = 1");
+                datos.setearConsulta("select numero, nombre, p.Descripcion, UrlImagen, e.Descripcion tipo, d.Descripcion debilidad, p.id,p.idtipo,p.iddebilidad from POKEMONS p, ELEMENTOS e, ELEMENTOS d where p.IdTipo=e.Id and d.Id=p.IdDebilidad And P.Activo = 1 order by numero");
                 datos.ejecturaLectura();
                 /// conexion.ConnectionString = "Data Source=DESKTOP-VUAF0M7\\SQLEXPRESS;Initial Catalog=POKEDEX_DB;Integrated Security=True";
                 //comando.CommandType = System.Data.CommandType.Text;
